@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,7 +31,6 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -82,32 +81,31 @@ public class PieChartFragment
                 return lhs.getValue() > rhs.getValue() ? -1 : lhs.getValue() == rhs.getValue() ? 0 : 1;
             }
         });
-        ArrayList<PieEntry> entries = new ArrayList<>();
+        ArrayList<Entry> yVals1 = new ArrayList<>();
+        ArrayList<String> xVals = new ArrayList<>();
 
         int length = mPieCharts.size() < MAX_NUM_ITEMS ? mPieCharts.size() : MAX_NUM_ITEMS;
 
         for (int i = 0; i < length; i++) {
-            entries.add(new PieEntry((float) mPieCharts.get(i).getValue(),
-                                      mPieCharts.get(i).getText()));
+            Entry e = new Entry((float) mPieCharts.get(i).getValue(), i);
+            yVals1.add(e);
+            xVals.add(mPieCharts.get(i).getText());
         }
 
-        PieDataSet dataSet = new PieDataSet(entries, "");
+        PieDataSet dataSet = new PieDataSet(yVals1, "");
         dataSet.setSliceSpace(3f);
 
         ArrayList<Integer> colors = new ArrayList<>();
 
-        UIHelper uiHelper = new UIHelper(getActivity());
         for (int c : COLORS)
-            colors.add(uiHelper.getColor(c));
+            colors.add(getResources().getColor(c));
 
         dataSet.setColors(colors);
-        PieData data = new PieData(dataSet);
-        // MPAndroidChart#2124
-        data.setValueFormatter(new PercentFormatter(mChart));
-        mChart.setUsePercentValues(true);
+        PieData data = new PieData(xVals, dataSet);
+        data.setValueFormatter(new PercentFormatter());
 
         if (mTextColor != -1)
-            data.setValueTextColor(uiHelper.getColor(mTextColor));
+            data.setValueTextColor(getResources().getColor(mTextColor));
 
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
@@ -155,7 +153,7 @@ public class PieChartFragment
         mChart.setHoleColor(Color.TRANSPARENT);
 
         mChart.setHoleRadius(30f);
-        mChart.getDescription().setEnabled(false);
+        mChart.setDescription("");
 
         mChart.setDrawCenterText(true);
 
@@ -230,10 +228,10 @@ public class PieChartFragment
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
         String text;
         try {
-            text = mPieCharts.get((int) h.getX()).getText().concat(": ").concat(mPieCharts.get((int) h.getX()).getValueFormatted());
+            text = mPieCharts.get(e.getXIndex()).getText().concat(": ").concat(mPieCharts.get(e.getXIndex()).getValueFormatted());
 //            Snackbar.with(getActivity().getApplicationContext()) // context
 //                    .text(text)
 //                    .duration(Snackbar.SnackbarDuration.LENGTH_LONG)

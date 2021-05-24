@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -461,7 +461,7 @@ public class WatchlistFragment
 
         new MaterialDialog.Builder(getContext())
             .title(R.string.download)
-            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
+            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
             .content(R.string.confirm_price_download)
                 .positiveText(android.R.string.ok)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -621,7 +621,7 @@ public class WatchlistFragment
 
         new MaterialDialog.Builder(getContext())
             .title(R.string.purge_history)
-            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
+            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
             .content(R.string.purge_history_confirmation)
                 .positiveText(android.R.string.ok)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {

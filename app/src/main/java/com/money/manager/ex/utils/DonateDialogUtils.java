@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.text.TextUtils;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -28,7 +29,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.money.manager.ex.DonateActivity;
 import com.money.manager.ex.R;
 import com.money.manager.ex.core.InfoKeys;
-import com.money.manager.ex.core.UIHelper;
 import com.money.manager.ex.servicelayer.InfoService;
 import com.money.manager.ex.core.Core;
 import com.money.manager.ex.settings.PreferenceConstants;
@@ -63,7 +63,7 @@ public class DonateDialogUtils {
                     .cancelable(false)
                     .title(R.string.donate)
                     .iconRes(R.mipmap.ic_launcher)
-                    .content(UIHelper.fromHtml(donateText))
+                    .content(Html.fromHtml(donateText))
                     .negativeText(R.string.no_thanks)
                     .onNegative(new MaterialDialog.SingleButtonCallback() {
                         @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -96,7 +96,7 @@ public class SearchActivity
         // Add Search icon.
         getMenuInflater().inflate(R.menu.menu_search, menu);
         MenuItem item = menu.findItem(R.id.searchMenuItem);
-        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        MenuItemCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_ALWAYS);
         item.setIcon(ui.getIcon(GoogleMaterial.Icon.gmd_search));
         // show this menu item last
 

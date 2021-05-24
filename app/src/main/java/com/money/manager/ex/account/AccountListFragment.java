@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -271,7 +271,7 @@ public class AccountListFragment
 
         new MaterialDialog.Builder(getContext())
             .title(R.string.delete_account)
-            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
+            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
             .content(R.string.confirmDelete)
             .positiveText(android.R.string.ok)
             .onPositive(new MaterialDialog.SingleButtonCallback() {
