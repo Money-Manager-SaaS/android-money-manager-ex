@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -218,7 +218,7 @@ public class SearchParametersFragment
 
         // Icons
         UIHelper ui = new UIHelper(getContext());
-        viewHolder.edtNotes.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(GoogleMaterial.Icon.gmd_content_paste), null, null,null);
+        viewHolder.edtNotes.setCompoundDrawablesRelativeWithIntrinsicBounds(ui.getIcon(GoogleMaterial.Icon.gmd_content_paste), null, null,null);
 
         // Store search criteria values into the controls.
         displaySearchCriteria(view);
@@ -290,7 +290,7 @@ public class SearchParametersFragment
         // 'Reset' toolbar item
         inflater.inflate(R.menu.menu_clear, menu);
         MenuItem item = menu.findItem(R.id.clearMenuItem);
-        MenuItemCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         item.setIcon(ui.getIcon(GoogleMaterial.Icon.gmd_clear));
 
         super.onCreateOptionsMenu(menu,inflater);
@@ -402,7 +402,7 @@ public class SearchParametersFragment
             amount = MoneyFactory.fromDouble(0);
         }
 
-        Calculator.forActivity(getActivity())
+        Calculator.forFragment(this)
                 .amount(amount)
                 .show(RequestCodes.AMOUNT_FROM);
     }
@@ -414,7 +414,9 @@ public class SearchParametersFragment
             amount = MoneyFactory.fromDouble(0);
         }
 
-        Calculator.forActivity(getActivity()).amount(amount).show(RequestCodes.AMOUNT_TO);
+        Calculator.forFragment(this)
+                .amount(amount)
+                .show(RequestCodes.AMOUNT_TO);
     }
 
     // Private

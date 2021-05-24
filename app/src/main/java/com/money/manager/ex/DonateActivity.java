@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,12 +20,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.money.manager.ex.common.MmxBaseFragmentActivity;
 import com.money.manager.ex.common.WebViewActivity;
 import com.money.manager.ex.core.HttpMethods;
 
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +43,12 @@ public class DonateActivity
 
         setContentView(R.layout.donate_activity);
         ButterKnife.bind(this);
+
+        //Copyright
+        TextView textViewCopyright = findViewById(R.id.textViewCopyright);
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        String copyrightString = String.format(Locale.US, getString(R.string.application_copyright), currentYear);
+        textViewCopyright.setText(copyrightString);
 
         // set enable return
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

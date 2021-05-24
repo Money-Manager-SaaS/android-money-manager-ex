@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -351,8 +351,30 @@ public class Core {
         Locale locale;
 
         if (!TextUtils.isEmpty(languageToLoad)) {
-            locale = new Locale(languageToLoad);
-//                locale = Locale.forLanguageTag(languageToLoad);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                locale = Locale.forLanguageTag(languageToLoad);
+            } else {
+                /* simplistic polyfill to parse respective arguments to Locale constructor
+                                 * "en"         = new Locale("en")
+                                 * "en-GB"     = new Locale("en", "GB")
+                                 * "en-GB-xxx"  = new Locale("en", "GB", "xxx")
+                                 * Ref: https://github.com/google/j2objc/issues/619
+                                 */
+                if (languageToLoad.contains("-")) {
+                    String[] args = languageToLoad.split("-");
+                    if (args.length > 2) {
+                        locale = new Locale(args[0], args[1], args[2]);
+                    } else if (args.length > 1) {
+                        locale = new Locale(args[0], args[1]);
+                    //} else if (args.length == 1) {
+                    //    locale = new Locale(args[0]);
+                    } else {
+                        locale = new Locale(languageToLoad);
+                    }
+                } else {
+                    locale = new Locale(languageToLoad);
+                }
+            }
         } else {
             locale = Locale.getDefault();
         }

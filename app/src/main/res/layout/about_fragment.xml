@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -107,18 +107,11 @@
             android:layout_gravity="center_horizontal">
 
             <ImageView
-                android:id="@+id/imageViewGooglePlus"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_margin="4dp"
-                app:srcCompat="@drawable/ic_social_google_plus"/>
-
-            <ImageView
                 android:id="@+id/imageViewGithub"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_margin="4dp"
-                app:srcCompat="@drawable/ic_social_github"/>
+                app:srcCompat="?attr/ic_social_github"/>
 
             <ImageView
                 android:id="@+id/imageViewTwitter"
@@ -132,8 +125,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="4dp"
             android:text="@string/application_credits"
             android:visibility="gone"/>
@@ -144,24 +137,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="4dp"
             android:text="@string/application_license"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/divider_ice_cream_sandwich"/>
 
         <com.money.manager.ex.view.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="4dp"
             android:gravity="center"
             android:text="@string/donate_header"/>
@@ -186,8 +179,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="@string/about_logcat_header"/>
