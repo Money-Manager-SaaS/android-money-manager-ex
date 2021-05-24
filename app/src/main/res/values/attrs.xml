@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -63,8 +63,6 @@
         <attr name="ic_plusone" format="reference"/>
         <attr name="ic_paste" format="reference"/>
         <attr name="ic_menu_selectall_holo_dark" format="reference" />
-        <!-- about social icon -->
-        <attr name="ic_social_github" format="reference" />
 
         <attr name="sym_keyboard_delete" format="reference"/>
         <attr name="holo_blue_color_theme" format="color|reference"/>

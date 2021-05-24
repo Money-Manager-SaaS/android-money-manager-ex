@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -33,7 +33,7 @@
         android:id="@+id/textViewMonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
+        android:gravity="left"
         android:layout_margin="4dp"
         android:layout_column="1"
         android:layout_weight="1"
@@ -44,7 +44,7 @@
         android:id="@+id/textViewIncome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="right"
         android:layout_margin="4dp"
         android:layout_column="2"
         android:layout_weight="2"
@@ -54,7 +54,7 @@
         android:id="@+id/textViewExpenses"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="right"
         android:layout_margin="4dp"
         android:layout_column="3"
         android:layout_weight="2"
@@ -64,7 +64,7 @@
         android:id="@+id/textViewDifference"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="right"
         android:layout_margin="4dp"
         android:layout_column="4"
         android:layout_weight="2"

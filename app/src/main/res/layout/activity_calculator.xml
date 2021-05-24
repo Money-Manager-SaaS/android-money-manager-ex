@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -32,18 +32,17 @@
         android:paddingTop="@dimen/mmx_padding"
         android:paddingBottom="@dimen/mmx_padding"
         android:orientation="vertical"
-        android:gravity="bottom"
-        android:layoutDirection="ltr">
+        android:gravity="bottom">
 
         <com.money.manager.ex.view.RobotoTextView
             android:id="@+id/textViewTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:gravity="end"
+            android:gravity="right"
             android:textSize="14sp"
             app:typeface="roboto_light"/>
 
@@ -52,10 +51,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:gravity="end"
+            android:gravity="right"
             android:text="€ 0.00"
             android:textSize="@dimen/input_dialog_text_size"
             app:typeface="roboto_light"/>
@@ -70,8 +69,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutDirection="ltr">
+        android:layout_height="wrap_content">
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="wrap_content"

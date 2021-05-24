@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2015 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,6 +40,7 @@ import static org.hamcrest.CoreMatchers.*;
  * Test the methods in MoneyManagerApplication.
  */
 @RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, application = TestApplication.class)
 public class MmexApplicationTests {
 
     private Context context;
@@ -79,7 +80,8 @@ public class MmexApplicationTests {
     public void dbDirectoryHasAppName() {
         final String expected = "MoneyManagerEx";
 
-        String actual = new DatabaseManager(context).getDefaultDatabaseDirectory();
+        MmxDatabaseUtils dbUtils = new MmxDatabaseUtils(this.context);
+        String actual = dbUtils.getDefaultDatabaseDirectory();
 
         assertThat(actual, containsString(expected));
     }
