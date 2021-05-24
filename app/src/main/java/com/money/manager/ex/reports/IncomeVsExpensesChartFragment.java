@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,8 +34,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.money.manager.ex.R;
 import com.money.manager.ex.core.UIHelper;
@@ -74,54 +74,43 @@ public class IncomeVsExpensesChartFragment
         ArrayList<BarEntry> yExpenses = new ArrayList<>();
 
         for (int i = 0; i < xVals.length; i++) {
-            yIncomes.add(new BarEntry(i, (float) incomes[i]));
-            yExpenses.add(new BarEntry(i, (float) expenses[i]));
+            yIncomes.add(new BarEntry((float) incomes[i], i));
+            yExpenses.add(new BarEntry((float) expenses[i], i));
         }
 
         BarDataSet dataSetIncomes = new BarDataSet(yIncomes, getString(R.string.income));
         BarDataSet dataSetExpenses = new BarDataSet(yExpenses, getString(R.string.expenses));
 
-        UIHelper uiHelper = new UIHelper(getActivity());
-        dataSetExpenses.setColor(uiHelper.getColor(R.color.material_red_500));
-        dataSetIncomes.setColor(uiHelper.getColor(R.color.material_green_500));
+        dataSetExpenses.setColor(getResources().getColor(R.color.material_red_500));
+        dataSetIncomes.setColor(getResources().getColor(R.color.material_green_500));
 
-        // https://weeklycoding.com/mpandroidchart-documentation/setting-data/
-        float groupSpace = 0.06f;
-        float barSpace = 0.02f;  // x2 dataset
-        float barWidth = 0.45f;  // x2 dataset
-        // (0.02 + 0.45) * 2 + 0.06 = 1.00 -> interval per "group"
+        List<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(dataSetIncomes);
+        dataSets.add(dataSetExpenses);
 
-        BarData data = new BarData(dataSetIncomes, dataSetExpenses);
-        data.setBarWidth(barWidth);
+        BarData data = new BarData(xVals, dataSets);
         if (mTextColor != -1)
-            data.setValueTextColor(uiHelper.getColor(mTextColor));
+            data.setValueTextColor(getResources().getColor(mTextColor));
         mChart.setData(data);
-        mChart.groupBars(0, groupSpace, barSpace);
         mChart.animateXY(1500, 1500);
         mChart.invalidate();
 
         Legend l = mChart.getLegend();
         if (l != null && mTextColor != -1)
-            l.setTextColor(uiHelper.getColor(mTextColor));
+            l.setTextColor(getResources().getColor(mTextColor));
 
         // x labels
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-        // https://stackoverflow.com/questions/35240289/how-to-create-a-barchart-with-grouped-bars-with-mpandroidchart
-        xAxis.setAxisMinimum(0);
-        xAxis.setAxisMaximum((float) xVals.length);
         if (xAxis != null && mTextColor != -1)
-            xAxis.setTextColor(uiHelper.getColor(mTextColor));
+            xAxis.setTextColor(getResources().getColor(mTextColor));
         // right label
         YAxis yAxis = mChart.getAxisRight();
         if (yAxis != null && mTextColor != -1)
-            yAxis.setTextColor(uiHelper.getColor(mTextColor));
+            yAxis.setTextColor(getResources().getColor(mTextColor));
         // left label
         yAxis = mChart.getAxisLeft();
         if (yAxis != null && mTextColor != -1)
-            yAxis.setTextColor(uiHelper.getColor(mTextColor));
+            yAxis.setTextColor(getResources().getColor(mTextColor));
     }
 
     @Override
@@ -154,7 +143,7 @@ public class IncomeVsExpensesChartFragment
 
         mChart = (BarChart) mLayout.findViewById(R.id.chartBar);
         mChart.setOnChartValueSelectedListener(this);
-        mChart.getDescription().setEnabled(false);
+        mChart.setDescription("");
 
 //      mChart.setDrawBorders(true);
 
@@ -219,7 +208,7 @@ public class IncomeVsExpensesChartFragment
     }
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
 
     }
 

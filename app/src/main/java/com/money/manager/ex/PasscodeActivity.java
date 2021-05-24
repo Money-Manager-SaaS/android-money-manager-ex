@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ import android.Manifest;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
@@ -75,8 +75,8 @@ public class PasscodeActivity extends AppCompatActivity {
 	private Cipher cipher;
 	private KeyStore keyStore;
 	private KeyGenerator keyGenerator;
-	private FingerprintManagerCompat.CryptoObject cryptoObject;
-	private FingerprintManagerCompat fingerprintManager;
+	private FingerprintManager.CryptoObject cryptoObject;
+	private FingerprintManager fingerprintManager;
 	private KeyguardManager keyguardManager;
 
 	@Override
@@ -161,8 +161,7 @@ public class PasscodeActivity extends AppCompatActivity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 
 			keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
-			//fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-			fingerprintManager = FingerprintManagerCompat.from(getApplicationContext());
+			fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
 
 			if (!fingerprintManager.isHardwareDetected()) {
 				((ImageView) findViewById(R.id.fpImageView))
@@ -190,7 +189,7 @@ public class PasscodeActivity extends AppCompatActivity {
 						e.printStackTrace();
 					}
 					if (initCipher()) {
-						cryptoObject = new FingerprintManagerCompat.CryptoObject(cipher);
+						cryptoObject = new FingerprintManager.CryptoObject(cipher);
 						FingerprintHandler helper = new FingerprintHandler(this);
 						helper.startAuth(fingerprintManager, cryptoObject);
 					}

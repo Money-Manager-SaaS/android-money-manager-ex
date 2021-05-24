@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -262,20 +262,20 @@ public class AccountTransactionListFragment
             if (!activity.isDualPanel()) {
                 //hide sync toolbar
                 MenuItem itemSync = menu.findItem(R.id.menu_sync);
-                if (itemSync != null) itemSync.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+                if (itemSync != null) MenuItemCompat.setShowAsAction(itemSync, MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
                 // hide menu open database
                 MenuItem itemOpenDatabase = menu.findItem(R.id.menu_open_database);
                 if (itemOpenDatabase != null) {
                     //itemOpenDatabase.setVisible(isShownOpenDatabaseItemMenu());
-                    itemOpenDatabase.setShowAsAction(!itemSync.isVisible()
+                    MenuItemCompat.setShowAsAction(itemOpenDatabase, !itemSync.isVisible()
                         ? MenuItem.SHOW_AS_ACTION_ALWAYS : MenuItem.SHOW_AS_ACTION_NEVER);
                 }
 
                 //hide dash board
                 MenuItem itemDashboard = menu.findItem(R.id.menu_dashboard);
                 if (itemDashboard != null)
-                    itemDashboard.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+                    MenuItemCompat.setShowAsAction(itemDashboard, MenuItem.SHOW_AS_ACTION_NEVER);
             }
         }
 
