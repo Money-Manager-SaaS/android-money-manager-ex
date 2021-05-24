@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -65,14 +65,5 @@ public class AboutActivity
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mViewPager.setCurrentItem(savedInstanceState.getInt(BUNDLE_KEY_TABINDEX));
-    }
-
-    @Override
-    protected void setTheme() {
-        try {
-            this.setTheme(R.style.Theme_Money_Manager_Light);
-        } catch (Exception e) {
-            Timber.e(e, "setting theme");
-        }
     }
 }

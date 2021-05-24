@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -93,7 +93,7 @@ public class AssetAllocationOverviewActivity
         MenuHelper helper = new MenuHelper(this, menu);
 
         // Edit Asset Allocation.
-        MenuItemCompat.setShowAsAction(helper.add(MenuHelper.edit, R.string.edit, GoogleMaterial.Icon.gmd_edit), MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        helper.add(MenuHelper.edit, R.string.edit, GoogleMaterial.Icon.gmd_edit).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         return true;
     }

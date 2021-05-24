@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -114,7 +114,7 @@ public abstract class BaseListFragment
         if (isSearchMenuVisible() && getActivity() != null && getActivity() instanceof AppCompatActivity) {
             // Place an action bar item for searching.
             final MenuItem itemSearch = menu.add(Menu.NONE, R.id.menu_query_mode, 1000, R.string.search);
-            MenuItemCompat.setShowAsAction(itemSearch, MenuItem.SHOW_AS_ACTION_ALWAYS);
+            itemSearch.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
             SearchView searchView = new SearchView(getActivity());
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -130,7 +130,7 @@ public abstract class BaseListFragment
             });
 //            searchView.setIconifiedByDefault(isMenuItemSearchIconified());
             searchView.setIconified(isMenuItemSearchIconified());
-            MenuItemCompat.setActionView(itemSearch, searchView);
+            itemSearch.setActionView(searchView);
 
             SearchViewFormatter formatter = new SearchViewFormatter();
             formatter.setSearchIconResource(R.drawable.ic_action_search_dark, true, true);

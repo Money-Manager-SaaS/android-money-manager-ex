@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,6 +35,7 @@ import com.money.manager.ex.domainmodel.Category;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 public class CategoryExpandableListAdapter
@@ -104,7 +105,7 @@ public class CategoryExpandableListAdapter
         holder.text1.setText(entity.getSubcategoryName());
 
         holder.text2.setText(entity.getCategName());
-        holder.text2.setTextColor(getContext().getResources().getColor(android.R.color.darker_gray));
+        holder.text2.setTextColor(ContextCompat.getColor(getContext(), android.R.color.darker_gray));
 
         // Selector. Always hidden on subcategories.
 
