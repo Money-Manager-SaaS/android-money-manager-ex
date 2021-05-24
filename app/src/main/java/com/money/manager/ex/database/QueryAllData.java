@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@ public class QueryAllData
 //    public static final String FromAccountId = "FromAccountId";
 //    public static final String FromAmount = "FromAmount";
 //    public static final String FromCurrencyId = "FromCurrencyId";
-    public static final String SPLITTED = "Splitted";
+    public static final String SPLITTED = "SPLITTED";
     public static final String CategID = "CategID";
     public static final String SubcategID = "SubcategID";
     public static final String Payee = "Payee";
