@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -385,7 +385,7 @@ public class RecurringTransactionEditActivity
 
         // Icon
         UIHelper ui = new UIHelper(this);
-        mViewHolder.paymentDateTextView.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_calendar_alt), null, null, null);
+        mViewHolder.paymentDateTextView.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_calendar), null, null, null);
 
         mViewHolder.paymentPreviousDayButton.setOnClickListener(new View.OnClickListener() {
             @Override

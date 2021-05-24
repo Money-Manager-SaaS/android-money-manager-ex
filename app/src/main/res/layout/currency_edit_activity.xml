@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -18,8 +18,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/mmx_activity_side_margin"
-    android:layout_marginEnd="@dimen/mmx_activity_side_margin"
+    android:layout_marginLeft="@dimen/mmx_activity_side_margin"
+    android:layout_marginRight="@dimen/mmx_activity_side_margin"
     android:background="?attr/theme_background_color"
     android:orientation="vertical">
 
@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/mmx_activity_side_padding"
-            android:paddingEnd="@dimen/mmx_activity_side_padding">
+            android:paddingLeft="@dimen/mmx_activity_side_padding"
+            android:paddingRight="@dimen/mmx_activity_side_padding">
 
             <!-- currency name -->
             <com.google.android.material.textfield.TextInputLayout

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,8 +23,6 @@ import android.text.TextUtils;
 import com.money.manager.ex.Constants;
 import com.money.manager.ex.R;
 import com.money.manager.ex.core.TransactionStatuses;
-
-import androidx.core.content.ContextCompat;
 
 /**
  * Helper for transaction status - related issues, like colors, etc.
@@ -100,19 +98,19 @@ public class TransactionStatus {
 //                result = ctx.getResources().getString(R.string.status_none);
 //                break;
             case RECONCILED:
-                result = ContextCompat.getColor(ctx, R.color.material_green_500);
+                result = ctx.getResources().getColor(R.color.material_green_500);
                 break;
             case VOID:
-                result = ContextCompat.getColor(ctx, R.color.material_red_500);
+                result = ctx.getResources().getColor(R.color.material_red_500);
                 break;
             case FOLLOWUP:
-                result = ContextCompat.getColor(ctx, R.color.material_orange_500);
+                result = ctx.getResources().getColor(R.color.material_orange_500);
                 break;
             case DUPLICATE:
-                result = ContextCompat.getColor(ctx, R.color.material_indigo_500);
+                result = ctx.getResources().getColor(R.color.material_indigo_500);
                 break;
             default:
-                result = ContextCompat.getColor(ctx, R.color.material_grey_500);
+                result = ctx.getResources().getColor(R.color.material_grey_500);
                 break;
         }
         return result;

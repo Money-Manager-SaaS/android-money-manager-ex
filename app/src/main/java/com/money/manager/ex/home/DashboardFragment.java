@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -23,6 +23,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.core.content.ContextCompat;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -444,7 +445,7 @@ public class DashboardFragment
             if (gravity[i] != null)
                 txtField.setGravity(gravity[i]);
             // set text
-            txtField.setText(UIHelper.fromHtml(fields[i]));
+            txtField.setText(Html.fromHtml(fields[i]));
             // set singleline
             txtField.setSingleLine(true);
             // add field

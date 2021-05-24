@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -163,7 +163,7 @@ public class FilterDialogFragment
         });
 
         UIHelper ui = new UIHelper(getActivity());
-        editButton.setCompoundDrawablesRelativeWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_pencil_alt), null, null, null);
+        editButton.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_pencil), null, null, null);
 
         // Favourite account
 
@@ -193,8 +193,8 @@ public class FilterDialogFragment
 
         UIHelper ui = new UIHelper(getActivity());
         IconicsDrawable icon = mAccount.getFavorite()
-                ? ui.getIcon(FontAwesome.Icon.faw_star1)
-                : ui.getIcon(FontAwesome.Icon.faw_star);
-        favouriteButton.setCompoundDrawablesRelativeWithIntrinsicBounds(icon, null, null, null);
+                ? ui.getIcon(FontAwesome.Icon.faw_star)
+                : ui.getIcon(FontAwesome.Icon.faw_star_o);
+        favouriteButton.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
     }
 }

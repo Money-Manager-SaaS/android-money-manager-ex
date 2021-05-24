@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,6 +20,7 @@ package com.money.manager.ex.about;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -38,13 +39,11 @@ import com.money.manager.ex.DonateActivity;
 import com.money.manager.ex.R;
 import com.money.manager.ex.common.MmxBaseFragmentActivity;
 import com.money.manager.ex.core.Core;
-import com.money.manager.ex.core.UIHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
-import java.util.Locale;
 
 import androidx.fragment.app.Fragment;
 import timber.log.Timber;
@@ -74,19 +73,18 @@ public class AboutFragment extends Fragment {
         Core core = new Core(getActivity());
         version = core.getAppVersionName();
         int build = core.getAppVersionCode();
-        //txtVersion.setText(getString(R.string.version) + " " + version + " (" + Integer.toString(build) + ")");
-        txtVersion.setText(String.format("%s %s", getString(R.string.version), String.format(Locale.US, "%s (%d)", version, build)));
+        txtVersion.setText(getString(R.string.version) + " " + version + " (" + Integer.toString(build) + ")");
         // + " (" + getString(R.string.build) + " " + build + ")"
         //Copyright
         TextView textViewCopyright = view.findViewById(R.id.textViewCopyright);
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        String copyrightString = String.format(Locale.US, getString(R.string.application_copyright), currentYear);
+        String copyrightString = getString(R.string.application_copyright, currentYear);
         textViewCopyright.setText(copyrightString);
 
         // Send Feedback
         TextView txtFeedback = view.findViewById(R.id.textViewLinkFeedback);
         text = "<u>" + txtFeedback.getText() + "</u>";
-        txtFeedback.setText(UIHelper.fromHtml(text));
+        txtFeedback.setText(Html.fromHtml(text));
         txtFeedback.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,7 +104,7 @@ public class AboutFragment extends Fragment {
         // rate application
         TextView txtRate = view.findViewById(R.id.textViewLinkRate);
         text = "<u>" + txtRate.getText() + "</u>";
-        txtRate.setText(UIHelper.fromHtml(text));
+        txtRate.setText(Html.fromHtml(text));
         txtRate.setMovementMethod(LinkMovementMethod.getInstance());
         OnClickListenerUrl clickListenerRate = new OnClickListenerUrl();
         clickListenerRate.setUrl("http://play.google.com/store/apps/details?id=com.money.manager.ex");
@@ -115,7 +113,7 @@ public class AboutFragment extends Fragment {
         // application issue tracker
         TextView txtIssues = view.findViewById(R.id.textViewIssuesTracker);
         text = "<u>" + txtIssues.getText() + "</u>";
-        txtIssues.setText(UIHelper.fromHtml(text));
+        txtIssues.setText(Html.fromHtml(text));
         txtIssues.setMovementMethod(LinkMovementMethod.getInstance());
         OnClickListenerUrl clickListenerIssuesTracker = new OnClickListenerUrl();
         clickListenerIssuesTracker.setUrl("https://github.com/moneymanagerex/android-money-manager-ex/issues/");
@@ -124,14 +122,13 @@ public class AboutFragment extends Fragment {
         // MMEX for Android web page
         TextView txtWebsite = view.findViewById(R.id.textViewWebSite);
         text = "<u>" + txtWebsite.getText() + "</u>";
-        /*String htmlText;
+        String htmlText;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             htmlText = Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY).toString();
         } else {
             htmlText = Html.fromHtml(text).toString();
         }
-        txtWebsite.setText(htmlText);*/
-        txtWebsite.setText(UIHelper.fromHtml(text));
+        txtWebsite.setText(htmlText);
         txtWebsite.setMovementMethod(LinkMovementMethod.getInstance());
         OnClickListenerUrl clickListenerWebsite = new OnClickListenerUrl();
         clickListenerWebsite.setUrl("http://android.moneymanagerex.org/");
@@ -140,18 +137,23 @@ public class AboutFragment extends Fragment {
         // report set link
         TextView txtReport = view.findViewById(R.id.textViewLinkWebSite);
         text = "<u>" + txtReport.getText() + "</u>";
-        /*htmlText = "";
+        htmlText = "";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             htmlText = Html.fromHtml(text, Html.FROM_HTML_MODE_LEGACY).toString();
         } else {
             htmlText = Html.fromHtml(text).toString();
         }
-        txtReport.setText(htmlText);*/
-        txtReport.setText(UIHelper.fromHtml(text));
+        txtReport.setText(htmlText);
         txtReport.setMovementMethod(LinkMovementMethod.getInstance());
         OnClickListenerUrl clickListenerFeedback = new OnClickListenerUrl();
         clickListenerFeedback.setUrl("http://www.moneymanagerex.org/?utm_campaign=Application_Android&utm_medium=MMEX_" + version + "&utm_source=Website");
         txtReport.setOnClickListener(clickListenerFeedback);
+
+        // image view google plus
+        OnClickListenerUrl clickListenerGooglePlus = new OnClickListenerUrl();
+        clickListenerGooglePlus.setUrl("http://goo.gl/R693Ih");
+        ImageView imageViewGooglePlus = (ImageView) view.findViewById(R.id.imageViewGooglePlus);
+        imageViewGooglePlus.setOnClickListener(clickListenerGooglePlus);
 
         // image view github
         OnClickListenerUrl clickListenerGithub = new OnClickListenerUrl();
@@ -166,14 +168,14 @@ public class AboutFragment extends Fragment {
         // GPLv2 license
         TextView txtLicense = (TextView) view.findViewById(R.id.textViewLicense);
         text = "<u>" + txtLicense.getText() + "</u>";
-        txtLicense.setText(UIHelper.fromHtml(text));
+        txtLicense.setText(Html.fromHtml(text));
         OnClickListenerUrl clickListenerLicense = new OnClickListenerUrl();
         clickListenerLicense.setUrl("http://www.gnu.org/licenses/old-licenses/gpl-2.0.html");
         txtLicense.setOnClickListener(clickListenerLicense);
         // logcat
         TextView txtLogcat = (TextView) view.findViewById(R.id.textViewLogcat);
         text = "<u>" + txtLogcat.getText() + "</u>";
-        txtLogcat.setText(UIHelper.fromHtml(text));
+        txtLogcat.setText(Html.fromHtml(text));
         txtLogcat.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
