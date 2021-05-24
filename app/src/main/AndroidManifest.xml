@@ -16,7 +16,7 @@
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.money.manager.ex">
+    package="com.money.manager.ex.fork">
 
     <!-- xmlns:tools="http://schemas.android.com/tools" -->
 
@@ -273,7 +273,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="com.money.manager.ex" />
+                <data android:scheme="com.money.manager.ex.fork" />
             </intent-filter>
         </activity>
         <activity android:name=".PasscodeActivity">

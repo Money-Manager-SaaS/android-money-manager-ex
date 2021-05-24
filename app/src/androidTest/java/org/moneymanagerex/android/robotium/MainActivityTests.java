@@ -68,7 +68,7 @@ public class MainActivityTests {
 //    }
 
     public void welcomeViewDisplayed() {
-        solo.waitForText("Welcome to MoneyManagerEx");
+        solo.waitForText("Welcome to MoneyManagerEx Fork");
 
         //assert
     }
