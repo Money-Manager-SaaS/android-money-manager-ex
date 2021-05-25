@@ -26,21 +26,34 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {
-        applicationId "uno.bai.mmex.fork"
-        versionCode 997
-        versionName getVersionAsDate() + "." + versionCode
-        // $applicationId
-        setProperty("archivesBaseName", "ammx-$versionName")
+    def versionPropsFile = file('version.properties')
 
-        // minSdkVersion rootProject.ext.minSdkVersion
-        // targetSdkVersion rootProject.ext.targetSdkVersion
-        minSdkVersion 19 // Android 4.4
-        targetSdkVersion 30
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
 
-        multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        def code = versionProps['VERSION_CODE'].toInteger() + 1
+
+        versionProps['VERSION_CODE']=code.toString()
+        versionProps.store(versionPropsFile.newWriter(), null)
+
+        defaultConfig {
+            applicationId "uno.bai.mmex.fork"
+            versionCode code
+            versionName getVersionAsDate() + "." + versionCode
+            // $applicationId
+            setProperty("archivesBaseName", "ammx-$versionName")
+
+            minSdkVersion 19 // Android 4.4
+            targetSdkVersion 30
+
+            multiDexEnabled true
+            vectorDrawables.useSupportLibrary = true
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+    else {
+        throw new GradleException("Could not read version.properties!")
     }
 
     sourceSets {
