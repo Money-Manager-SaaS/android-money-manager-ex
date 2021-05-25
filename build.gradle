@@ -18,14 +18,13 @@
 buildscript {
     repositories {
         google()
-        jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // robolectric
         maven { url "https://clojars.org/repo/" }               // icepick
         mavenCentral()
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'com.android.tools.build:gradle:4.2.1'
     }
 }
 
@@ -53,7 +52,6 @@ ext {
 allprojects {
     repositories {
         google()
-        jcenter()
         maven { url "https://clojars.org/repo/" }               // icepick
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // butterknife
         mavenCentral()
