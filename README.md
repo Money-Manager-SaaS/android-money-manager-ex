@@ -1,4 +1,4 @@
-# MoneyManagerEx Fork for Android
+# MoneyManagerEx for Android
 
 See our homepage at [android.moneymanagerex.org](http://android.moneymanagerex.org/) for more user-oriented information.
 
@@ -12,7 +12,7 @@ Money Manager Ex for Android is a mobile companion to PC/desktop personal financ
 
 #### Links
 
-[![MoneyManagerEx Fork for Android on PlayStore](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](http://play.google.com/store/apps/details?id=com.money.manager.ex)
+[![MoneyManagerEx for Android on PlayStore](https://developer.android.com/images/brand/en_app_rgb_wo_60.png)](http://play.google.com/store/apps/details?id=com.money.manager.ex)
 
 #### Contributing
 
@@ -25,7 +25,7 @@ There are several ways you can contribute to the project:
 
 #### Translate
 
-If you want to join our translation team: [MoneyManagerEx Form for Android on Crowdin.net](https://crowdin.net/project/android-money-manager-ex)
+If you want to join our translation team: [MoneyManagerEx for Android on Crowdin.net](https://crowdin.net/project/android-money-manager-ex)
 
 #### Beta Testing
 
