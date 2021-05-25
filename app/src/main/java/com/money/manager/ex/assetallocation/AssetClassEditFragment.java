@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -203,7 +203,7 @@ public class AssetClassEditFragment
         });
 
         UIHelper ui = new UIHelper(getContext());
-        textView.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_sort_amount_asc), null, null, null);
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(ui.getIcon(FontAwesome.Icon.faw_sort_amount_down), null, null, null);
     }
 
     private void displayAllocation() {

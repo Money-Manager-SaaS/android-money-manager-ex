@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -43,6 +43,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import org.greenrobot.eventbus.EventBus;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import icepick.Icepick;
 import icepick.State;
@@ -328,7 +329,7 @@ public class AmountInputDialog
                 // Just display the last valid value.
                 displayFormattedAmount();
                 // Use the warning colour.
-                txtTop.setTextColor(getResources().getColor(R.color.material_amber_800));
+                txtTop.setTextColor(ContextCompat.getColor(getContext(), R.color.material_amber_800));
 
                 return false;
             } catch (Exception e) {

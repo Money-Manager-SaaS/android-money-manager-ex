@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -381,7 +381,7 @@ public class AccountEditActivity
 
         // Notes
         UIHelper ui = new UIHelper(this);
-        mViewHolder.edtNotes.setCompoundDrawablesWithIntrinsicBounds(ui.getIcon(GoogleMaterial.Icon.gmd_content_paste), null, null, null);
+        mViewHolder.edtNotes.setCompoundDrawablesRelativeWithIntrinsicBounds(ui.getIcon(GoogleMaterial.Icon.gmd_content_paste), null, null, null);
 
         // Display data.
 
