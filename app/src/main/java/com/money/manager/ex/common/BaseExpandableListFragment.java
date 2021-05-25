@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -122,7 +122,7 @@ public abstract class BaseExpandableListFragment
             // Place an action bar item for searching.
             final MenuItem itemSearch = menu.add(0, R.id.menu_query_mode, 1000, R.string.search);
 
-            MenuItemCompat.setShowAsAction(itemSearch, MenuItem.SHOW_AS_ACTION_ALWAYS);
+            itemSearch.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 //            ActionBarActivity activity = (ActionBarActivity) getActivity();
 //            AppCompatActivity activity = (AppCompatActivity) getActivity();
 
@@ -140,7 +140,7 @@ public abstract class BaseExpandableListFragment
                     }
                 });
                 searchView.setIconified(isMenuItemSearchIconified());
-                MenuItemCompat.setActionView(itemSearch, searchView);
+                itemSearch.setActionView(searchView);
 
                 SearchViewFormatter formatter = new SearchViewFormatter();
 
@@ -183,7 +183,7 @@ public abstract class BaseExpandableListFragment
             edtSearch.requestFocus();
             // rendo visibile la keyboard
             imm.showSoftInput(edtSearch, 0);
-            MenuItemCompat.setActionView(item, searchView);
+            item.setActionView(searchView);
             // aggiorno lo stato
             mDisplayShowCustomEnabled = true;
         } else {
@@ -192,7 +192,7 @@ public abstract class BaseExpandableListFragment
                 // nascondo la keyboard
                 imm.hideSoftInputFromWindow(edtSearch.getWindowToken(), 0);
                 // tolgo la searchview
-                MenuItemCompat.setActionView(item, null);
+                item.setActionView(null);
                 // aggiorno lo stato
                 mDisplayShowCustomEnabled = false;
             } else {

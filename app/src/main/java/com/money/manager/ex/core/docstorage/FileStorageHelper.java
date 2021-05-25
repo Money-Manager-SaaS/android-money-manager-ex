@@ -3,21 +3,24 @@ package com.money.manager.ex.core.docstorage;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.UriPermission;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
-import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.provider.OpenableColumns;
 
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
+import com.money.manager.ex.core.IntentFactory;
 import com.money.manager.ex.core.RequestCodes;
 import com.money.manager.ex.core.database.DatabaseManager;
 import com.money.manager.ex.home.DatabaseMetadata;
+import com.money.manager.ex.home.MainActivity;
 import com.money.manager.ex.utils.MmxDatabaseUtils;
 import com.money.manager.ex.utils.MmxDate;
 import com.nononsenseapps.filepicker.FilePickerActivity;
@@ -28,7 +31,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import timber.log.Timber;
 
@@ -39,9 +44,10 @@ public class FileStorageHelper {
     public FileStorageHelper(AppCompatActivity host) {
         _host = host;
     }
+    public int itemSelected;
 
     private AppCompatActivity _host;
-
+    private MainActivity mActivity;
     public Context getContext() {
         return _host;
     }
@@ -60,6 +66,11 @@ public class FileStorageHelper {
             // ACTION_GET_CONTENT in older versions of Android.
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
             // intent.setType("text/plain");
             //intent.setType("application/x-sqlite3");
             intent.setType("*/*");
@@ -92,8 +103,8 @@ public class FileStorageHelper {
      * @param metadata Database file metadata.
      */
     public void synchronize(DatabaseMetadata metadata) {
-        // validation
-        // Make sure we have a valid storage-access-framework url.
+
+        // Validation: Make sure we have a valid storage-access-framework url.
         if (!metadata.remotePath.startsWith("content://")) {
             Timber.w("Invalid remote Uri. Please re-open the database.");
             return;
@@ -107,27 +118,94 @@ public class FileStorageHelper {
 
         // decide on the action
         if (remoteChanged && localChanged) {
-            String message = "Conflict! Both files have been modified.";
-            //throw new RuntimeException();
-            Timber.e(message);
+
+            //[velmuruganc] give option to force upload and download
+            String[] singleChoiceItems = {"Force Upload", "Force Download"};
+            itemSelected = 0;
+
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Sync. Conflict! Both files have been modified")
+                    .setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int selectedIndex) {
+                            itemSelected = selectedIndex;
+                        }
+                    })
+                    .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int selectedIndex) {
+                            if(itemSelected==0){
+                                //force upload
+                                pushDatabase(metadata);
+                            }
+                            if(itemSelected==1){
+                                //force download
+                                pullDatabase(metadata);
+
+                                //[velmuruganc]restart the main activity to pick latest changes
+                                Timber.i("Please restart the application...!");
+
+                                try {
+                                    //Intent intent = IntentFactory.getMainActivityNew(getContext());
+                                    //mActivity.startActivity(intent);
+                                    //mActivity.finish();
+
+                                } catch (Exception e) {
+                                    Timber.e(e);
+                                }
+                            }
+                        }
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
             return;
         }
         if (remoteChanged) {
             // download
             pullDatabase(metadata);
         }
-        if (localChanged) {
+        if (localChanged ) {
             // upload
             pushDatabase(metadata);
         }
         if (!remoteChanged && !localChanged) {
             Timber.i("Not synchronizing. Files have not been modified.");
+
+            //[velmuruganc] Create the intent that’ll fire when the user taps the notification
+            try {
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                mActivity.showNotification(intent, "Not Synchronizing", "MMEX Files have not been modified...!");
+            } catch (Exception e) {
+                Timber.e(e);
+            }
         }
     }
 
     /*
         Private area
      */
+
+    /**
+     * Check if the persisted permissions are still valid.
+     */
+    private void checkPermissions(Uri uri) {
+        boolean valid = false;
+        List<UriPermission> list = _host.getContentResolver().getPersistedUriPermissions();
+        for (int i = 0; i < list.size(); i++){
+
+            if(list.get(i).getUri() == uri && list.get(i).isWritePermission()){
+                //return true;
+                valid = true;
+                continue;
+            }
+        }
+        //return false;
+
+        if (!valid) {
+            // request the permissions again.
+            takePersistablePermissions(uri);
+        }
+    }
 
     private boolean isLocalFileChanged(DatabaseMetadata metadata) {
         MmxDate localLastModifiedMmxDate = getLocalFileModifiedDate(metadata);
@@ -156,6 +234,7 @@ public class FileStorageHelper {
      * @param metadata Database file metadata.
      */
     private void pullDatabase(DatabaseMetadata metadata) {
+
         // Delete previous local file, if found.
         File prevFile = new File(metadata.localPath);
         boolean deleted = prevFile.delete();
@@ -176,6 +255,7 @@ public class FileStorageHelper {
         // store the metadata.
         MmxDatabaseUtils dbUtils = new MmxDatabaseUtils(getContext());
         dbUtils.useDatabase(metadata);
+
     }
 
     /**
@@ -183,22 +263,14 @@ public class FileStorageHelper {
      * @param metadata Database file metadata.
      */
     private void pushDatabase(DatabaseMetadata metadata) {
-//        // handle remote changes
-//        boolean isRemoteChanged = isRemoteFileChanged(metadata);
-//        if (isRemoteChanged) {
-//            Timber.w("The remote file was modified in the meantime");
-//            return;
-//        }
-//
-//        // Check for local modifications.
-//        boolean isLocalFileChanged = isLocalFileChanged(metadata);
-//        if (!isLocalFileChanged) {
-//            Timber.i("Local copy not modified.");
-//            return;
-//        }
 
         // upload local file
-        uploadDatabase(metadata);
+        try {
+            uploadDatabase(metadata);
+        } catch (Exception e) {
+            Timber.e(e);
+            return;
+        }
 
         // Update the modification timestamps, both local and remote.
         MmxDate localLastModifiedMmxDate = getLocalFileModifiedDate(metadata);
@@ -240,10 +312,7 @@ public class FileStorageHelper {
         uri = activityResultData.getData();
         //Timber.i("blah", "Uri: " + uri.toString());
 
-        // Take persistable URI permission.
-        _host.getContentResolver().takePersistableUriPermission(uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION
-                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        takePersistablePermissions(uri);
 
         return uri;
     }
@@ -270,6 +339,8 @@ public class FileStorageHelper {
 
     private DocFileMetadata getRemoteMetadata(Uri uri) {
         AppCompatActivity host = _host;
+
+        checkPermissions(uri);
 
         DocFileMetadata result = new DocFileMetadata();
         result.Uri = uri.toString();
@@ -325,6 +396,7 @@ public class FileStorageHelper {
      */
     private void uploadDatabase(DatabaseMetadata metadata) {
         ContentResolver resolver = getContext().getContentResolver();
+
         Uri remote = Uri.parse(metadata.remotePath);
 
         ParcelFileDescriptor pfd = null;
@@ -342,6 +414,7 @@ public class FileStorageHelper {
             pfd.close();
 
             Timber.i("Database stored successfully.");
+
         } catch (FileNotFoundException e) {
             Timber.e(e);
         } catch (IOException e) {
@@ -387,7 +460,10 @@ public class FileStorageHelper {
             //Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
             is = resolver.openInputStream(uri);
             long bytesCopied = ByteStreams.copy(is, outputStream);
+
             Timber.d("copied %d bytes", bytesCopied);
+            Timber.i("Database downloaded successfully...!");
+
         } catch (Exception e) {
            Timber.e(e);
         } finally {
@@ -466,9 +542,12 @@ public class FileStorageHelper {
                     // got an update. store the latest metadata.
                     metadata.remoteLastChangedDate = remote.lastModified.toIsoString();
                     saveMetadata(metadata);
+
                     Timber.i("The remote file updated at " +
                             remote.lastModified.toIsoDateShortTimeString());
+
                     // do not poll further.
+
                 }
 
             }
@@ -478,5 +557,12 @@ public class FileStorageHelper {
 
         // Stop a repeating task like this.
         //handler.removeCallbacks(runnable);
+    }
+
+    private void takePersistablePermissions(Uri uri) {
+        // Take persistable URI permission.
+        _host.getContentResolver().takePersistableUriPermission(uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
     }
 }

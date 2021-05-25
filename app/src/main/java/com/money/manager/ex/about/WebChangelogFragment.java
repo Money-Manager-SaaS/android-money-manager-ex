@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -71,6 +71,7 @@ public class WebChangelogFragment
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web_changelog, container, false);
 
+        view.findViewById(R.id.webView).setBackgroundColor(0);
         loadChangelog(view);
 
         return view;

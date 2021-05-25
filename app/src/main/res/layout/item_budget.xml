@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+  ~ Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
   ~
   ~ This program is free software; you can redistribute it and/or
   ~ modify it under the terms of the GNU General Public License
@@ -24,8 +24,8 @@
     <com.money.manager.ex.view.RobotoTextView
         android:id="@+id/categoryTextView"
         android:layout_width="0dp"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
+        android:paddingStart="1dp"
+        android:paddingEnd="1dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
@@ -45,7 +45,7 @@
         android:id="@+id/amountTextView"
         android:layout_width="wrap_content"
         android:minWidth="60dp"
-        android:paddingLeft="1dp"
+        android:paddingStart="1dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:gravity="center_vertical|end"
@@ -55,7 +55,7 @@
         android:id="@+id/actualTextView"
         android:layout_width="wrap_content"
         android:minWidth="60dp"
-        android:paddingLeft="1dp"
+        android:paddingStart="1dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:gravity="center_vertical|end"

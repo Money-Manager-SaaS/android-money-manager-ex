@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2018 The Android Money Manager Ex Project Team
+ * Copyright (C) 2012-2019 The Android Money Manager Ex Project Team
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -116,7 +116,7 @@ public class CurrencyUIFeatures {
 
         new MaterialDialog.Builder(getContext())
                 .title(R.string.delete_currency)
-                .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
+                .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
                 .content(R.string.confirmDelete)
                 .positiveText(android.R.string.ok)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -140,7 +140,7 @@ public class CurrencyUIFeatures {
 
         new MaterialDialog.Builder(getContext())
             .title(R.string.attention)
-            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
+            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
             .content(R.string.question_import_currencies)
                 .positiveText(android.R.string.ok)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
@@ -164,7 +164,7 @@ public class CurrencyUIFeatures {
 
         new MaterialDialog.Builder(getContext())
             .title(R.string.download)
-            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle_o))
+            .icon(ui.getIcon(FontAwesome.Icon.faw_question_circle))
             .content(R.string.question_update_currency_exchange_rates)
             .positiveText(android.R.string.ok)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
