@@ -18,7 +18,7 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+//        jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // robolectric
         maven { url "https://clojars.org/repo/" }               // icepick
         mavenCentral()
@@ -53,7 +53,7 @@ ext {
 allprojects {
     repositories {
         google()
-        jcenter()
+//        jcenter()
         maven { url "https://clojars.org/repo/" }               // icepick
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" } // butterknife
         mavenCentral()
