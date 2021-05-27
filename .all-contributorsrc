@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "tim-hub",
+      "name": "Tim",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2884320?v=4",
+      "profile": "https://tim.bai.uno",
+      "contributions": [
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "android-money-manager-ex-fork",
+  "projectOwner": "Money-Manager-SaaS",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
