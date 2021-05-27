@@ -74,7 +74,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://tim.bai.uno"><img src="https://avatars.githubusercontent.com/u/2884320?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim</b></sub></a><br /><a href="#maintenance-tim-hub" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://tim.bai.uno"><img src="https://avatars.githubusercontent.com/u/2884320?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim</b></sub></a><br /><a href="#maintenance-tim-hub" title="Maintenance">🚧</a> <a href="https://github.com/Money-Manager-SaaS/android-money-manager-ex-fork/issues?q=author%3Atim-hub" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
