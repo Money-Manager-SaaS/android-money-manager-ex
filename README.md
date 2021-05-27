@@ -1,6 +1,6 @@
 # MoneyManagerEx Fork for Android
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 See our homepage at [android.moneymanagerex.org](http://android.moneymanagerex.org/) for more user-oriented information.
@@ -46,9 +46,28 @@ To build the project, the following settings are recommended:
 
 Travis CI build is active for the project. It runs a build on every check-in and a pull request. Sometimes it fails when the new build tools are introduced in the project but not on Travis.
 
+
+# Contributors ✨
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+    <tr>
+        <td align="center"><a href="https://tim.bai.uno"><img src="https://avatars.githubusercontent.com/u/2884320?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim</b></sub></a><br /><a href="#maintenance-tim-hub" title="Maintenance">🚧</a></td> 
+        <td align="center"><a href="https://github.com/velmuruganc"><img src="https://avatars.githubusercontent.com/u/29807533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Velmurugan Cithaiyan</b></sub></a><br /><a href="#maintenance-velmuruganc" title="Maintenance">🚧</a></td>
+    </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+
 # License
 
-    Copyright 2012-2019 The Android Money Manager Ex Project Team
+    Copyright 2012-2021 @tim-hub
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License
@@ -64,26 +83,3 @@ Travis CI build is active for the project. It runs a build on every check-in and
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-    <tr>
-        <td align="center"><a href="https://tim.bai.uno"><img src="https://avatars.githubusercontent.com/u/2884320?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tim</b></sub></a><br /><a href="#maintenance-tim-hub" title="Maintenance">🚧</a></td>
-    </tr>
-    <tr>
-        <td align="center"><a href="https://github.com/velmuruganc"><img src="https://avatars.githubusercontent.com/u/29807533?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Velmurugan Cithaiyan</b></sub></a><br /><a href="#maintenance-velmuruganc" title="Maintenance">🚧</a></td>
-    </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
