@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "velmuruganc",
+      "name": "Velmurugan Cithaiyan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29807533?v=4",
+      "profile": "https://github.com/velmuruganc",
+      "contributions": [
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "android-money-manager-ex-fork",
+  "projectOwner": "Money-Manager-SaaS",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
