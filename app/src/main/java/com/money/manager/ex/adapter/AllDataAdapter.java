@@ -228,8 +228,13 @@ public class AllDataAdapter
 
         // notes
         if (!TextUtils.isEmpty(cursor.getString(cursor.getColumnIndex(NOTES)))) {
-            holder.txtNotes.setText(UIHelper.fromHtml("<small>" + cursor.getString(cursor.getColumnIndex(NOTES)) + "</small>"));
-            holder.txtNotes.setVisibility(View.VISIBLE);
+            String note = cursor.getString(cursor.getColumnIndex(NOTES));
+            if (note.length() > 12) {
+                holder.txtNotes.setVisibility(View.GONE);
+            } else {
+                holder.txtNotes.setText(UIHelper.fromHtml("<small>" + note + "</small>"));
+                holder.txtNotes.setVisibility(View.VISIBLE);
+            }
         } else {
             holder.txtNotes.setVisibility(View.GONE);
         }
